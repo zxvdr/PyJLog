@@ -129,7 +129,7 @@ cdef class Writer:
     cpdef remove_subscriber(self, subscriber):
         cdef cjlog.jlog_ctx *ctx
         ctx = cjlog.jlog_new(self.path)
-        if cjlog.jlog_ctx_remove_subscriber(ctx, PyString_AsString(subscriber)) != 0:
+        if cjlog.jlog_ctx_remove_subscriber(ctx, PyString_AsString(subscriber)) != 1:
             raise JLogError(cjlog.jlog_ctx_err(ctx), cjlog.jlog_ctx_err_string(ctx))
         if cjlog.jlog_ctx_close(ctx) != 0:
             raise JLogError(cjlog.jlog_ctx_err(ctx), cjlog.jlog_ctx_err_string(ctx))
