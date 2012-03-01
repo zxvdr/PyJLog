@@ -89,6 +89,10 @@ cdef class Reader:
                 raise JLogError(cjlog.jlog_ctx_err(self._ctx), cjlog.jlog_ctx_err_string(self._ctx))
             self._ctx = NULL
 
+    @property
+    def will_checkpoint(self):
+        return self.begin.marker > self.end.marker
+
 
 cdef class Writer:
 
